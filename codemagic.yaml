@@ -11,7 +11,9 @@ workflows:
       vars:
         PACKAGE_NAME: "com.fintrack.app" # <-- Replace with your actual package name
         GOOGLE_PLAY_TRACK: "internal" # <-- Options: internal, alpha, beta, production
-      java: 17
+        GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx2048m -Dorg.gradle.daemon=false"
+        _JAVA_OPTIONS: "-Xmx2048m"
+      java: 11
       flutter: stable
       xcode: latest
       cocoapods: default
