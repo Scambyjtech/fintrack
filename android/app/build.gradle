@@ -5,9 +5,7 @@ plugins {
 }
 
 android {
-    namespace "com.fintrack.app"
     compileSdkVersion 33
-
     defaultConfig {
         applicationId "com.fintrack.app"
         minSdkVersion 21
@@ -15,7 +13,6 @@ android {
         versionCode 1
         versionName "1.0"
     }
-
     buildTypes {
         release {
             signingConfig signingConfigs.debug
@@ -23,6 +20,6 @@ android {
     }
 }
 
-flutter {
-    source '../..'
+dependencies {
+    // No need for explicit kotlin-stdlib, handled by plugin
 }
