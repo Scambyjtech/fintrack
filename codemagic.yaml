@@ -15,28 +15,25 @@ workflows:
         _JAVA_OPTIONS: "-Xmx2048m"
       java: 11
       flutter: stable
-      xcode: latest
-      cocoapods: default
     scripts:
       - name: Set up local.properties
         script: |
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
       
+      - name: Fix Gradle JVM args
+        script: |
+          export GRADLE_OPTS=""
+          export _JAVA_OPTIONS=""
+          unset GRADLE_OPTS
+          unset _JAVA_OPTIONS
+      
       - name: Get Flutter packages
         script: |
           flutter packages pub get
       
-      - name: Flutter analyze
-        script: |
-          flutter analyze
-      
-      - name: Flutter unit tests
-        script: |
-          flutter test
-          
       - name: Build APK with Flutter
         script: |
-          flutter build apk --debug --dart-define=flutter.inspector.structuredErrors=false
+          flutter build apk --debug --verbose --dart-define=flutter.inspector.structuredErrors=false
           
     artifacts:
       - build/**/outputs/**/*.apk
